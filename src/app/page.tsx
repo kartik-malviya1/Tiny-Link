@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <>
-      <div>Hello World</div>
-    </>
-  );
+    <main>
+      <div>url shortner</div>
+    </main>
+  )
 }

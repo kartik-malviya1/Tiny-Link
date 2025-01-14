@@ -19,16 +19,27 @@ model User {
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Urls      Urls[]
+  url       Url[]
 }
 
-model Urls {
+model Url {
   id          Int      @id @default(autoincrement())
   originalUrl String
-  shortUrl    String
-  customUrl   String
+  shortUrl    String   @unique
+  customUrl   String   @unique
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  click       Click[]
+}
+
+model Click {
+  id        Int      @id
+  city      String?
+  device    String?
+  country   String?
+  url       Url      @relation(fields: [urlId], references: [id], onDelete: Cascade)
+  urlId     Int
+  createdAt DateTime @default(now())
 }
