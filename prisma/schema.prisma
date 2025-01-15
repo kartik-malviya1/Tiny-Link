@@ -14,32 +14,60 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String?
-  email     String   @unique
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  url           Url[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  url       Url[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
 }
 
 model Url {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   originalUrl String
-  shortUrl    String   @unique
-  customUrl   String   @unique
+  shortUrl    String  @unique
+  customUrl   String  @unique
   userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   click       Click[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Click {
-  id        Int      @id
-  city      String?
-  device    String?
-  country   String?
-  url       Url      @relation(fields: [urlId], references: [id], onDelete: Cascade)
-  urlId     Int
+  id      Int     @id
+  city    String?
+  device  String?
+  country String?
+  url     Url     @relation(fields: [urlId], references: [id], onDelete: Cascade)
+  urlId   Int
+
   createdAt DateTime @default(now())
 }

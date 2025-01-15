@@ -28,6 +28,7 @@ export const SignUpForm = () => {
   const form = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -111,7 +112,7 @@ export const SignUpForm = () => {
           <FormSuccess message={success} />
           <FormError message={error} />
           <Button type="submit" className="w-full" disabled={isPending}>
-            Sign up
+            Create an account
           </Button>
         </form>
       </Form>
