@@ -3,7 +3,8 @@
 import { CardWrapper } from "@/components/auth/card-wrapper"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { SignUpSchema } from "@/schemas"
+import { LoginSchema } from "@/schemas"
+import { ResetSchema } from "@/schemas"
 import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import {
@@ -18,60 +19,41 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { FormError } from "@/components/form-error"
 import { FormSuccess } from "@/components/form-success"
-import { signUp } from "@/actions/sign-up"
+import { login } from "@/actions/login"
 
-export const SignUpForm = () => {
+export const ResetForm = () => {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
 
-  const form = useForm<z.infer<typeof SignUpSchema>>({
-    resolver: zodResolver(SignUpSchema),
+  const form = useForm<z.infer<typeof ResetSchema>>({
+    resolver: zodResolver(ResetSchema),
     defaultValues: {
-      name: "",
       email: "",
-      password: "",
     },
   })
 
-  const onSubmit = (value: z.infer<typeof SignUpSchema>) => {
+  const onSubmit = (value: z.infer<typeof ResetSchema>) => {
     setError("")
     setSuccess("")
-    startTransition(() => {
-      signUp(value).then((data) => {
-        setError(data.error)
-        setSuccess(data.success)
-      })
-    })
+
+    console.log(value)
+    // startTransition(() => {
+    //   login(value).then((data) => {
+    //     setError(data?.error)
+    //     setSuccess(data?.success)
+    //   })
+    // })
   }
   return (
     <CardWrapper
-      headerLabel="Create an account"
-      backButtonLabel="Already have an account?"
+      headerLabel="Forgot your password?"
+      backButtonLabel="Back to login"
       backButtonHref="/auth/login"
-      showSocial
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="John Doe"
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="email"
@@ -90,33 +72,15 @@ export const SignUpForm = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="******"
-                      type="password"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
-          <FormSuccess message={success} />
           <FormError message={error} />
+          <FormSuccess message={success} />
           <Button
             type="submit"
             className="w-full font-semibold"
             disabled={isPending}
           >
-            Create an account
+            Send reset email
           </Button>
         </form>
       </Form>
