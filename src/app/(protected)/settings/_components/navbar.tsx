@@ -14,8 +14,11 @@ const Navbar = () => {
         >
           <Link href={"/settings"}>Settings</Link>
         </Button>
-        <Button asChild variant={pathname === "/server" ? "default" : "ghost"}>
-          <Link href={"/user"}>Server</Link>
+        <Button
+          asChild
+          variant={pathname === "/server" ? "default" : "outline"}
+        >
+          <Link href={"/server"}>Server</Link>
         </Button>
       </div>
       <UserButton />
