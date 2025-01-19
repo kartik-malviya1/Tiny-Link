@@ -1,6 +1,6 @@
 "use client"
 
-import Navbar from "./settings/_components/navbar"
+import Navbar from "./_components/navbar"
 
 interface ProtectedLayoutProps {
   children: React.ReactNode
