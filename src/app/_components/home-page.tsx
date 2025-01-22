@@ -25,15 +25,15 @@ const HomePage = () => {
   if (!mounted) return null
 
   return (
-    <main className="relative py-16 mt-6 sm:py-14 overflow-hidden">
+    <main className="relative py-8 sm:py-16 mt-4 sm:mt-6 overflow-hidden">
       <MaxWidthWrapper className="flex flex-col lg:flex-row justify-between items-center">
         <motion.div
-          className="relative flex flex-col mb-12 lg:mb-0 lg:mr-8"
+          className="relative flex flex-col mb-8 lg:mb-0 lg:mr-8 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative flex max-w-2xl flex-col items-start select-none">
+          <div className="relative flex max-w-2xl flex-col items-center sm:items-start select-none">
             <motion.div
               className="mb-8 flex"
               initial={{ opacity: 0, x: -20 }}
@@ -59,26 +59,27 @@ const HomePage = () => {
             </motion.div>
           </div>
           <motion.div
-            className="flex flex-col"
+            className="flex flex-col text-center sm:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl text-pretty font-heading tracking-normal font-semibold text-gray-300">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl text-pretty font-heading tracking-normal font-semibold text-gray-300">
               Bio Link & Link
               <br />
               <span className="">
-                Shortner for <br />
+                Shortner for <br className="hidden sm:block" />
               </span>{" "}
               Business Needs
             </h1>
-            <p className="tracking-normal text-pretty text-gray-400 text-sm py-6 px-1 mt-2">
+            <p className="tracking-normal text-pretty text-gray-400 text-sm py-4 sm:py-6 px-1 mt-2">
               On a single platform, you&apos;ll find all the tools you need to
-              connect your <br /> audience, Manage links and QR Codes
+              connect your <br className="hidden sm:block" /> audience, Manage links and QR Codes
             </p>
           </motion.div>
+
           <motion.div
-            className="mt-3"
+            className="mt-3 w-full sm:w-auto flex justify-center sm:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -86,14 +87,14 @@ const HomePage = () => {
             <Button
               asChild
               size={"lg"}
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto"
             >
-              <Link href="/auth/sign-up">Get Started For Free </Link>
+              <Link href="/auth/sign-up">Get Started For Free</Link>
             </Button>
           </motion.div>
 
           <motion.div
-            className="mt-8 items-center flex select-none"
+            className="mt-8 items-center flex flex-col sm:flex-row select-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
@@ -106,19 +107,19 @@ const HomePage = () => {
                   alt={`user ${index + 1}`}
                   width={100}
                   height={100}
-                  className="inline-block h-6 w-6 md:h-10 md:w-10 rounded-full ring-2 ring-green-500"
+                  className="inline-block h-8 w-8 md:h-10 md:w-10 rounded-full ring-2 ring-green-500"
                 />
               ))}
             </div>
-            <div className="flex flex-col ml-4 items-center md:items-start gap-1">
+            <div className="flex flex-col mt-4 sm:mt-0 sm:ml-4 items-center sm:items-start gap-1">
               <div className="flex gap-0.5">
                 {[...Array(4)].map((_, index) => (
                   <Star
                     key={index}
-                    className="flex w-3 h-3 md:h-4 md:w-4 fill-orange-500 text-orange-500"
+                    className="flex w-4 h-4 fill-orange-500 text-orange-500"
                   />
                 ))}
-                <Star className="flex w-3 h-3 md:h-4 md:w-4 text-orange-500" />
+                <Star className="flex w-4 h-4 text-orange-500" />
                 <p className="font-medium ml-0.5 text-sm">4.0</p>
               </div>
               <p className="text-sm font-normal text-gray-400">
@@ -127,8 +128,9 @@ const HomePage = () => {
             </div>
           </motion.div>
         </motion.div>
+
         <motion.div
-          className="relative w-full max-w-md lg:max-w-sm"
+          className="relative w-full max-w-[340px] sm:max-w-md lg:max-w-sm px-4 sm:px-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 1 }}
@@ -136,7 +138,7 @@ const HomePage = () => {
           <div className="flex flex-col gap-6 items-start select-none">
             <Card className="h-fit p-4 flex flex-col w-full">
               <div className="flex flex-col">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
                   <h1 className="text-sm">QR CODE</h1>
                   <Button className="text-white bg-green-600 px-2 py-2 text-xs sm:text-sm hover:bg-green-700">
                     <a href={"/portfolio-QR.png"} download={"Scan it ;)"}>
@@ -144,7 +146,7 @@ const HomePage = () => {
                     </a>
                   </Button>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center sm:items-start">
+                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0">
                   <div>
                     <Image
                       src={portfolio || "/placeholder.svg"}
@@ -152,7 +154,7 @@ const HomePage = () => {
                       className="h-24 w-24"
                     />
                   </div>
-                  <div className="flex flex-col items-start justify-center gap-4 mt-4 sm:mt-0 sm:ml-10">
+                  <div className="flex flex-col items-center sm:items-start justify-center gap-4 sm:ml-10">
                     <div className="flex space-x-2.5 text-sm font-normal text-center">
                       <Link2 className="w-5 h-5 text-green-500" />
                       <p className="font-light">https://tinylink.in/kartik</p>
@@ -165,9 +167,11 @@ const HomePage = () => {
                 </div>
               </div>
             </Card>
+
             <div className="absolute top-40 right-10 hidden lg:block">
               <Link2 className="w-16 h-16 rounded-full bg-green-600 p-4" />
             </div>
+
             <Card className="max-h-fit w-full p-4">
               <div className="flex flex-col mt-2">
                 <h1 className="text-sm font-normal">CUSTOM YOUR LINK</h1>

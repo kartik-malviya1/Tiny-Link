@@ -28,7 +28,7 @@ const ShortenInput = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="uppercase font-semibold text-3xl lg:text-4xl text-gray-300 text-center lg:text-left"
+            className="uppercase font-semibold text-2xl sm:text-3xl lg:text-4xl text-gray-300 text-center lg:text-left"
           >
             Shorten Your Link Now
           </motion.h1>
