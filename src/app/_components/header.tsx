@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="h-16 flex items-center justify-between">
-          <Link href={"/"} className="flex z-40 font-semibold text-xl">
+          <Link href={"/"} className="flex z-100 font-semibold text-xl">
             <span className="text-gray-300">
               Tiny<span className="text-green-500 font-mono">Link</span>
             </span>
