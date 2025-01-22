@@ -13,7 +13,7 @@ import Link from "next/link"
 
 const HomePage = () => {
   return (
-    <main className="relative py-20 sm:py-18">
+    <main className="relative py-16 sm:py-16">
       <MaxWidthWrapper className="justify-between flex">
         <div className="relative flex flex-col">
           <div className="relative flex max-w-2xl flex-col items-start select-none">
@@ -131,13 +131,21 @@ const HomePage = () => {
             <Card className="max-h-fit w-full p-4">
               <div className="flex flex-col mt-2">
                 <h1 className="text-sm font-normal">CUSTOM YOUR LINK</h1>
-                <div className="flex justify-start p-6">
-                  <Image
-                    src={dashboardimg}
-                    alt="Dashboard"
-                    className="object-cover rounded-md"
-                  />
+                <div className="w-full bg-gray-800/40 px-4 py-2 rounded-lg mt-4">
+                  <div className="flex justify-center py-1">
+                    <Image
+                      src={dashboardimg}
+                      alt="Dashboard"
+                      className="object-cover rounded-md w-60 "
+                    />
+                  </div>
                 </div>
+                <Card className="flex gap-2 rounded-md p-2 mt-3">
+                  <Link2 className="text-green-500" />
+                  <p>
+                    <span className="text-green-500">short.</span>link/kartik
+                  </p>
+                </Card>
               </div>
             </Card>
           </div>
