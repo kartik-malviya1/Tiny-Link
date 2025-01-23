@@ -10,12 +10,7 @@ export async function GET(
 
     // Find the URL in the database
     const url = await db.url.findUnique({
-      where: { shortUrl,
-        OR: [
-          { shortUrl },
-          { customUrl: shortUrl }
-        ]
-      },
+      where: { shortUrl, OR: [{ shortUrl }, { customUrl: shortUrl }] },
     })
 
     if (!url) {
@@ -28,9 +23,10 @@ export async function GET(
       data: {
         id: Math.floor(Math.random() * 1000000), // Generate a random ID
         urlId: url.id,
+
         // You can add more tracking data here like:
         device: req.headers.get("user-agent") || undefined,
-        country: req.headers.get("cf-ipcountry") || undefined, // If using Cloudflare
+        country: req.headers.get("cf-ipcountry") || undefined,
       },
     })
 
@@ -40,4 +36,4 @@ export async function GET(
     console.error("Error processing redirect:", error)
     return new NextResponse("Internal Server Error", { status: 500 })
   }
-} 
+}
