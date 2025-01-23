@@ -25,8 +25,8 @@ const HomePage = () => {
   if (!mounted) return null
 
   return (
-    <main className="relative py-8 sm:py-16 mt-4 sm:mt-6 overflow-hidden">
-      <MaxWidthWrapper className="flex flex-col lg:flex-row justify-between items-center">
+    <main className="relative py-8 sm:py-16 mt-4 overflow-hidden">
+      <MaxWidthWrapper className="flex flex-col lg:flex-row justify-between items-start">
         <motion.div
           className="relative flex flex-col mb-8 lg:mb-0 lg:mr-8 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}

@@ -15,7 +15,7 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
     return { error: "Invalid fields" }
   }
 
-  const { name, email, password } = validateFields.data 
+  const { name, email, password } = validateFields.data
   const hashPassword = await bcrypt.hash(password, 10)
 
   const existingUser = await getUserByEmail(email)
@@ -31,10 +31,9 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
       password: hashPassword,
     },
   })
-  
+
   const verificationToken = await generateVerificationToken(email)
   await sendVerificationEmail(verificationToken.token, verificationToken.email)
 
-  // The callbackUrl will be handled by the client component
   return { success: "Confirmation email sent!" }
 }

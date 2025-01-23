@@ -1,27 +1,14 @@
 "use client"
+import { logout } from "@/actions/logout"
 import { MaxWidthWrapper } from "@/components/max-width-wrapper"
 import { Button } from "@/components/ui/button"
+import { useCurrentUser } from "@/hooks/use-current-user"
 import Link from "next/link"
-import { useState, useEffect } from "react"
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  useEffect(() => {
-    // Check if user is logged in (adjust based on your auth method)
-    const checkAuth = () => {
-      const token = localStorage.getItem('token') // or your auth check
-      setIsLoggedIn(!!token)
-    }
-    
-    checkAuth()
-  }, [])
-
-  const handleLogout = () => {
-    // Implement logout logic here
-    localStorage.removeItem('token')
-    setIsLoggedIn(false)
-    // Add any additional logout logic (e.g., redirect)
+  const user = useCurrentUser()
+  const onClick = () =>{
+    logout() 
   }
 
   return (
@@ -35,7 +22,7 @@ const Navbar = () => {
           </Link>
 
           <div className="h-full flex items-center space-x-2">
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <Button asChild variant="ghost">
                   <Link href="/dashboard">Dashboard</Link>
@@ -44,7 +31,7 @@ const Navbar = () => {
                   <Link href="/profile">Profile</Link>
                 </Button>
                 <Button 
-                  onClick={handleLogout}
+                onClick={onClick}
                   variant="outline"
                   className="border border-green-600 hover:border-gray-900"
                 >
@@ -53,7 +40,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Button asChild variant="ghost">
+                 <Button asChild variant="ghost">
                   <Link href={"/auth/login"}>Login</Link>
                 </Button>
                 <Button
@@ -64,7 +51,7 @@ const Navbar = () => {
                   <Link href={"/auth/sign-up"} className="text-green-500">
                     Sign up
                   </Link>
-                </Button>
+                </Button> 
               </>
             )}
           </div>
