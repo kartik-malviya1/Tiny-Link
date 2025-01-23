@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useCallback } from "react"
 import { useSession } from "next-auth/react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { shortenUrl } from "@/actions/shorten-url"
@@ -10,8 +10,27 @@ const CreateNew = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const { data: session, status } = useSession()
-  
+
   const url = searchParams.get("url")
+
+  const handleUrlShortening = useCallback(async (urlToShorten: string) => {
+    const response = await shortenUrl({
+      originalUrl: urlToShorten,
+      userId: session?.user?.id as string,
+    })
+
+    if (response.error) {
+      toast.error(response.error)
+      router.push("/")
+      return
+    }
+
+    if (response.success) {
+      toast.success(response.success)
+      router.push("/dashboard")
+      window.location.reload()
+    }
+  }, [router, session])
 
   useEffect(() => {
     if (status === "loading") return
@@ -28,26 +47,11 @@ const CreateNew = () => {
       return
     }
 
-    handleUrlShortening(url)
-  }, [session, status, url, router])
-
-  const handleUrlShortening = async (urlToShorten: string) => {
-    const response = await shortenUrl({
-      originalUrl: urlToShorten,
-      userId: session?.user?.id as string,
-    })
-
-    if (response.error) {
-      toast.error(response.error)
-      router.push("/")
-      return
+    // Call handleUrlShortening if a URL is present
+    if (url) {
+      handleUrlShortening(url)
     }
-
-    if (response.success) {
-      toast.success(response.success)
-      router.push("/dashboard")
-    }
-  }
+  }, [session, url, router, status, handleUrlShortening])
 
   return null
 }

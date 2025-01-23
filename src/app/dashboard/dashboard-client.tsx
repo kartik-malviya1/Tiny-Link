@@ -4,11 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Card, CardContent } from "@/components/ui/card"
-import { 
-  Copy, 
-  MousePointerClick,
-  Trash2
-} from "lucide-react"
+import { Copy, MousePointerClick, Trash2 } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +18,6 @@ import {
 } from "@/components/ui/alert-dialog"
 import { deleteUrl } from "@/actions/delete-url"
 import { useRouter } from "next/navigation"
-import { MaxWidthWrapper } from "@/components/max-width-wrapper"
 
 interface Click {
   id: number
@@ -67,7 +62,7 @@ export function DashboardClient({ urls }: DashboardClientProps) {
         toast.success(response.success)
         router.refresh()
       }
-    } catch  {
+    } catch {
       toast.error("Failed to delete URL")
     } finally {
       setDeletingId(null)
@@ -75,7 +70,6 @@ export function DashboardClient({ urls }: DashboardClientProps) {
   }
 
   return (
-
     <div className="grid gap-4 md:grid-cols-2">
       {urls.map((url) => (
         <Card key={url.id} className="overflow-hidden">
@@ -93,7 +87,7 @@ export function DashboardClient({ urls }: DashboardClientProps) {
                 Clicks: {url.click.length}
               </p>
             </div>
-            
+
             <div className="flex items-center justify-between gap-2 pt-2">
               <div className="flex items-center gap-2">
                 <MousePointerClick className="h-4 w-4 text-muted-foreground" />
@@ -130,7 +124,8 @@ export function DashboardClient({ urls }: DashboardClientProps) {
                     <AlertDialogHeader>
                       <AlertDialogTitle>Delete URL</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Are you sure you want to delete this shortened URL? This action cannot be undone.
+                        Are you sure you want to delete this shortened URL? This
+                        action cannot be undone.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -151,4 +146,4 @@ export function DashboardClient({ urls }: DashboardClientProps) {
       ))}
     </div>
   )
-} 
+}
