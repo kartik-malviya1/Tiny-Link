@@ -21,7 +21,7 @@ export async function GET(
     // Create click record with available information
     await db.click.create({
       data: {
-        id: Math.floor(Math.random() * 1000000), // Generate a random ID
+        id: Math.floor(Math.random() * 1000000),
         urlId: url.id,
 
         // You can add more tracking data here like:
