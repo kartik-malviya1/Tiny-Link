@@ -35,27 +35,20 @@ const HomePage = () => {
         >
           <div className="relative flex max-w-2xl flex-col items-center sm:items-start select-none">
             <motion.div
-              className="mb-8 flex"
+              className="mb-8 flex "
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Link
-                href="https://github.com/kartik-malviya1/Tiny-Link"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex"
-              >
-                <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
-                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#166600_0%,#166626_50%,#166646_100%)]" />
-                  <div className="inline-flex h-full w-full cursor-pointer justify-center rounded-full px-3 py-1 text-xs font-medium leading-5 text-green-500 backdrop-blur-xl bg-primary-foreground">
-                    Let&apos;s make with simply one click. 👈
-                    <span className="inline-flex items-center pl-2">
-                      Read more <ArrowRight className="pl-0.5" size={16} />
-                    </span>
-                  </div>
-                </span>
-              </Link>
+              <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#166600_0%,#166626_50%,#166646_100%)]" />
+                <div className="inline-flex h-full w-full justify-center rounded-full px-3 py-1 text-xs font-medium leading-5 text-green-500 backdrop-blur-xl bg-primary-foreground">
+                  Let&apos;s make with simply one click. 👈
+                  <span className="inline-flex items-center pl-2">
+                    Read more <ArrowRight className="pl-0.5" size={16} />
+                  </span>
+                </div>
+              </span>
             </motion.div>
           </div>
           <motion.div
@@ -74,7 +67,8 @@ const HomePage = () => {
             </h1>
             <p className="tracking-normal text-pretty text-gray-400 text-sm py-4 sm:py-6 px-1 mt-2">
               On a single platform, you&apos;ll find all the tools you need to
-              connect your <br className="hidden sm:block" /> audience, Manage links and QR Codes
+              connect your <br className="hidden sm:block" /> audience, Manage
+              links and QR Codes
             </p>
           </motion.div>
 
