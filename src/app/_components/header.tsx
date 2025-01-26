@@ -19,6 +19,7 @@ const Navbar = () => {
             </span>
           </Link>
 
+          <div className="h-full flex items-center space-x-2">
             {user ? (
               <>
                     <UserButton />
@@ -40,6 +41,7 @@ const Navbar = () => {
               </>
             )}
           </div>
+        </div>
       </MaxWidthWrapper>
     </nav>
   )
