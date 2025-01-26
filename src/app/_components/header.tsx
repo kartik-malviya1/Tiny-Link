@@ -1,5 +1,6 @@
 "use client"
 import { logout } from "@/actions/logout"
+import { UserButton } from "@/components/auth/user-button"
 import { MaxWidthWrapper } from "@/components/max-width-wrapper"
 import { Button } from "@/components/ui/button"
 import { useCurrentUser } from "@/hooks/use-current-user"
@@ -24,18 +25,12 @@ const Navbar = () => {
           <div className="h-full flex items-center space-x-2">
             {user ? (
               <>
-                <Button asChild variant="ghost">
-                  <Link href="/dashboard">Dashboard</Link>
-                </Button>
-                <Button asChild variant="ghost">
-                  <Link href="/profile">Profile</Link>
-                </Button>
                 <Button 
                 onClick={onClick}
                   variant="outline"
                   className="border border-green-600 hover:border-gray-900"
                 >
-                  <span className="text-green-500">Logout</span>
+                  <span className="text-green-500"><UserButton /></span>
                 </Button>
               </>
             ) : (
