@@ -1,5 +1,5 @@
 "use client"
-import { logout } from "@/actions/logout"
+
 import { UserButton } from "@/components/auth/user-button"
 import { MaxWidthWrapper } from "@/components/max-width-wrapper"
 import { Button } from "@/components/ui/button"
@@ -8,9 +8,6 @@ import Link from "next/link"
 
 const Navbar = () => {
   const user = useCurrentUser()
-  const onClick = () =>{
-    logout() 
-  }
 
   return (
     <nav className="sticky z-[100] h-16 inset-x-0 top-0 w-full border-b backdrop-blur-lg transition-all">
@@ -25,13 +22,7 @@ const Navbar = () => {
           <div className="h-full flex items-center space-x-2">
             {user ? (
               <>
-                <Button 
-                onClick={onClick}
-                  variant="outline"
-                  className="border border-green-600 hover:border-gray-900"
-                >
-                  <span className="text-green-500"><UserButton /></span>
-                </Button>
+                    <UserButton />
               </>
             ) : (
               <>
