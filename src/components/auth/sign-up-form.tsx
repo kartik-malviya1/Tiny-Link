@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { FormError } from "@/components/form-error"
 import { FormSuccess } from "@/components/form-success"
-import { signUp } from "@/actions/sign-up"
+import { SignUp } from "@/actions/sign-up"
 
 export const SignUpForm = () => {
   const [isPending, startTransition] = useTransition()
@@ -38,7 +38,7 @@ export const SignUpForm = () => {
     setError("")
     setSuccess("")
     startTransition(() => {
-      signUp(value).then((data) => {
+      SignUp(value).then((data) => {
         setError(data.error)
         setSuccess(data.success)
       })
